@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Website</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'custom-gradient': 'linear-gradient(to right, #ff6b6b, #ffa500)',
+          },
+        },
+      },
+    };
+  </script>
+ <style>
+  .fade-out {
+    animation: fadeOut 1s ease-in-out forwards;
+  }
+
+  .fade-in {
+    animation: fadeIn 1s ease-in-out forwards;
+  }
+
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      display: none;
+    }
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+</style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+  <div class="flex items-center justify-center text-center m-10 p-20 shadow-lg border-gray-700 border-2 rounded-2xl w-[45rem] h-96" >
+  <div id="fadeElement">
+   <h1 class="text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500">Welcome to the Imagination Zone: Blank White Screen</h1>
+    <p class="text-2xl font-bold mt-4 text-gray-700">Perfect for Kids, Projectors, and Fun!</p>
+  </div>
+   
+  </div>
+
+<script>
+  function changeText() {
+    const element = document.getElementById('fadeElement');
+    
+    setTimeout(() => {
+      element.classList.add('fade-out');
+      
+      setTimeout(() => {
+        element.innerHTML = `<h1 class="text-7xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500 fade-in">Next...</h1>`;
+        element.classList.remove('fade-out');
+        
+        setTimeout(() => {
+          element.classList.add('fade-out');
+          setTimeout(() => {
+            element.innerHTML = `<h1 class="text-7xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500 fade-in">Cyclic</h1>`;
+            element.classList.remove('fade-out');
+            
+            setTimeout(() => {
+              changeBackgroundRandomly();
+            }, 1000); 
+          }, 1000); 
+        }, 2000); 
+      }, 2000); 
+    }, 5000);
+  }
+
+  window.onload = changeText;
+</script>
+
+</body>
+</html>
